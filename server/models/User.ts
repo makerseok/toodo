@@ -26,7 +26,8 @@ const userSchema: Schema<IUserDocument> = new Schema({
   },
   password: {
     type: String,
-    minlength: 5,
+    required: true,
+    minlength: 8,
   },
   role: {
     type: Number,
@@ -37,7 +38,7 @@ const userSchema: Schema<IUserDocument> = new Schema({
 
 userSchema.methods.setPassword = async function (password: string) {
   const hash = await bcrypt.hash(password, 10);
-  this.hashedPassword = hash;
+  this.password = hash;
 };
 
 userSchema.methods.checkPassword = async function (password: string) {

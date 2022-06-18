@@ -7,4 +7,13 @@ interface IUser {
   tokens?: string;
 }
 
-export { IUser };
+interface ILogin {
+  email: string;
+  password: string;
+}
+
+interface ITypedRequestBody<T> extends Express.Request {
+  body: T;
+}
+
+export { IUser, ILogin, ITypedRequestBody };

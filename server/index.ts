@@ -7,6 +7,7 @@ import express, {
 } from 'express';
 import mongoose from 'mongoose';
 import { MONGO_URL } from './config/dev';
+import { usersRouter } from './routes/users';
 
 const app = express();
 
@@ -23,6 +24,8 @@ mongoose
 app.get('/api/welcome', (req: Request, res: Response, next: NextFunction) => {
   res.send('welcome!');
 });
+
+app.use('/api/users', usersRouter);
 
 app.listen(port, () => {
   console.log(`

@@ -54,6 +54,12 @@ userSchema.statics.findByEmail = function (email: string) {
   return this.findOne({ email });
 };
 
+userSchema.pre('save', async function (next) {
+  if (this.password) {
+    await this.setPassword(this.password);
+  }
+});
+
 const User = mongoose.model<IUserDocument, IUserModel>('User', userSchema);
 
 export default User;

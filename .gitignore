@@ -1,2 +1,5 @@
 # dependencies
 node_modules
+
+# for develop
+/**/dev.ts

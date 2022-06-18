@@ -1,16 +1,17 @@
-import { Schema, Document, model, Model, Types } from 'mongoose';
-import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import mongoose, { Document, Model, Schema } from 'mongoose';
+import { User } from '../types/User';
 
-interface IUSER {
-  name: string;
-  email: string;
-  password: string;
-  role: number;
-  image?: string;
-  tokens?: string;
+interface UserDocument extends User, Document {
+  setPassword: (password: string) => Promise<void>;
+  checkPassword: (password: string) => Promise<boolean>;
 }
 
-const userSchema = new Schema({
+interface UserModel extends Model<UserDocument> {
+  findByName: (name: string) => Promise<UserDocument>;
+}
+
+const userSchema: Schema<UserDocument> = new Schema({
   name: {
     type: String,
     maxlength: 50,

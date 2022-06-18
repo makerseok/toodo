@@ -1,4 +1,4 @@
-interface User {
+interface IUser {
   name: string;
   email: string;
   password: string;
@@ -7,4 +7,4 @@ interface User {
   tokens?: string;
 }
 
-export { User };
+export { IUser };

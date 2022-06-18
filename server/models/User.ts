@@ -1,17 +1,17 @@
 import bcrypt from 'bcrypt';
 import mongoose, { Document, Model, Schema } from 'mongoose';
-import { User } from '../types/User';
+import { IUser } from '../types/IUser';
 
-interface UserDocument extends User, Document {
+interface IUserDocument extends User, Document {
   setPassword: (password: string) => Promise<void>;
   checkPassword: (password: string) => Promise<boolean>;
 }
 
-interface UserModel extends Model<UserDocument> {
-  findByName: (name: string) => Promise<UserDocument>;
+interface IUserModel extends Model<IUserDocument> {
+  findByName: (name: string) => Promise<IUserDocument>;
 }
 
-const userSchema: Schema<UserDocument> = new Schema({
+const userSchema: Schema<IUserDocument> = new Schema({
   name: {
     type: String,
     maxlength: 50,
@@ -48,6 +48,6 @@ userSchema.statics.findByName = function (name: string) {
   return this.findOne({ name });
 };
 
-const User = mongoose.model<UserDocument, UserModel>('User', userSchema);
+const User = mongoose.model<IUserDocument, IUserModel>('User', userSchema);
 
 export default User;

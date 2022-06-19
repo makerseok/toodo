@@ -1,17 +1,32 @@
 import express from 'express';
 import User from '../models/User';
-import { ILogin, ITypedRequestBody, IUser } from '../types/IUser';
+import {
+  ILogin,
+  ITypedRequestBody,
+  IUser,
+  ITypedRequestSession,
+} from '../types/IUser';
 
 const usersRouter = express.Router();
 
 usersRouter.post(
   '/login',
-  async (req: ITypedRequestBody<ILogin>, res: express.Response) => {
+  async (
+    req: ITypedRequestBody<ILogin> &
+      ITypedRequestSession<{ user: Omit<IUser, 'password'> }>,
+    res: express.Response,
+  ) => {
     const user = await User.findByEmail(req.body?.email);
     if (user) {
       if (req.body?.password) {
         if (await user.checkPassword(req.body?.password)) {
-          res.send('login!');
+          req.session.user = {
+            name: user.name,
+            email: user.email,
+            role: user.role,
+          };
+          req.session.save();
+          res.send({ ...req.session, success: true });
         } else {
           res.send('wrong password!');
         }

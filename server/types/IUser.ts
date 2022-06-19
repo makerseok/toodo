@@ -1,3 +1,5 @@
+import session from 'express-session';
+
 interface IUser {
   name: string;
   email: string;
@@ -16,4 +18,8 @@ interface ITypedRequestBody<T> extends Express.Request {
   body: T;
 }
 
-export { IUser, ILogin, ITypedRequestBody };
+interface ITypedRequestSession<T> extends Express.Request {
+  session: session.Session & Partial<session.SessionData & T>;
+}
+
+export { IUser, ILogin, ITypedRequestBody, ITypedRequestSession };

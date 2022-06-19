@@ -6,8 +6,10 @@ import express, {
   urlencoded,
 } from 'express';
 import mongoose from 'mongoose';
-import { MONGO_URL } from './config/dev';
+import { MONGO_URL, SESSION_SECRET } from './config/dev';
 import { usersRouter } from './routes/users';
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
 
 const app = express();
 
@@ -15,6 +17,16 @@ const port = '5000';
 
 app.use(urlencoded({ extended: true }));
 app.use(json());
+
+app.use(
+  session({
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: MONGO_URL }),
+    cookie: { httpOnly: true, secure: false, maxAge: 24 * 60 * 60 * 1000 },
+  }),
+);
 
 mongoose
   .connect(MONGO_URL)

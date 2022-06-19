@@ -39,6 +39,10 @@ usersRouter.post(
   },
 );
 
+usersRouter.get('/logout', (req, res) => {
+  req.session.destroy(err => console.log(err));
+});
+
 usersRouter.post(
   '/register',
   async (req: ITypedRequestBody<IUser>, res: express.Response) => {

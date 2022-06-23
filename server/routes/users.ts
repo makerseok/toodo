@@ -26,15 +26,21 @@ usersRouter.post(
             role: user.role,
           };
           req.session.save();
-          res.send({ ...req.session, success: true });
+          res.json({ ...req.session, success: true });
         } else {
-          res.send('wrong password!');
+          res.json({
+            success: false,
+            message: '비밀번호가 올바르지 않습니다.',
+          });
         }
       } else {
-        res.send('please input password');
+        res.json({ success: false, message: '비밀번호를 입력해주세요.' });
       }
     } else {
-      res.send('email not exist');
+      res.json({
+        success: false,
+        message: '해당하는 이메일이 존재하지 않습니다.',
+      });
     }
   },
 );

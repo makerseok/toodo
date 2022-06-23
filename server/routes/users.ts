@@ -59,4 +59,18 @@ usersRouter.post(
   },
 );
 
+usersRouter.get(
+  '/auth',
+  (
+    req: ITypedRequestSession<{ user: Omit<IUser, 'password'> }>,
+    res: express.Response,
+  ) => {
+    if (req.session?.user) {
+      return res.json({ auth: true, user: req.session.user });
+    } else {
+      return res.json({ auth: false });
+    }
+  },
+);
+
 export { usersRouter };

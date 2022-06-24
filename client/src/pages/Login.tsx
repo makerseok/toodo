@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { UserUpdateContext } from '../App';
+// import Auth from '../components/hoc/Auth';
 
 function Login() {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: '',
     password: '',
   });
+  const updateUser = useContext(UserUpdateContext);
 
   const handleChangeEmail: React.ChangeEventHandler<HTMLInputElement> = e => {
     setUser({
@@ -29,6 +34,13 @@ function Login() {
       .post('/api/users/login', user)
       .then(response => response.data);
     console.log(response);
+    if (response.success) {
+      alert('로그인 성공!');
+      updateUser();
+      navigate(-1);
+    } else {
+      alert(response.message);
+    }
   };
 
   return (
@@ -47,3 +59,4 @@ function Login() {
 }
 
 export default Login;
+// export default Auth(Login, false);

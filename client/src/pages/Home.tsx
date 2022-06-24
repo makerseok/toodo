@@ -1,7 +1,12 @@
 import React from 'react';
+import Header from '../components/gnb/Header';
 
 function Home() {
-  return <div>Home</div>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 }
 
 export default Home;

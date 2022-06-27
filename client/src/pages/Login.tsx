@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { UserUpdateContext } from '../App';
+import Input from '../components/Input';
 // import Auth from '../components/hoc/Auth';
 
 function Login() {
@@ -46,10 +47,16 @@ function Login() {
   return (
     <div className="login-container">
       <form className="login-form">
-        <input name="email" value={user.email} onChange={handleChangeEmail} />
-        <input
-          name="password"
-          value={user.password}
+        <Input
+          id="email"
+          label="email"
+          type="email"
+          onChange={handleChangeEmail}
+        />
+        <Input
+          id="password"
+          label="password"
+          type="password"
           onChange={handleChangePassword}
         />
         <button onClick={handleLogin}>login</button>

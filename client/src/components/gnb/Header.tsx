@@ -21,10 +21,14 @@ function Header() {
 
   const handleClickLogout = () => {
     // navigate('/');
-    axios.get('/api/users/logout').then(res => {
-      console.log(res);
-    });
-    updateUser();
+    axios
+      .get('/api/users/logout')
+      .then(res => {
+        updateUser();
+        console.log(res);
+        alert('로그아웃 되었습니다!');
+      })
+      .catch(err => console.log(err));
   };
 
   return (

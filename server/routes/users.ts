@@ -47,6 +47,7 @@ usersRouter.post(
 
 usersRouter.get('/logout', (req, res) => {
   req.session.destroy(err => console.log(err));
+  res.json({ success: true });
 });
 
 usersRouter.post(

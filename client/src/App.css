@@ -49,13 +49,6 @@
   height: 100vh;
 }
 
-input {
-  display: block;
-  width: 400px;
-  height: 30px;
-  margin: 5px;
-}
-
 /* text button */
 .button-text {
   cursor: pointer;

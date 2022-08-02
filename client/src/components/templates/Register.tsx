@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Input from '../components/Input';
+import Input from '../atoms/Input';
 
 function Register() {
   const navigate = useNavigate();

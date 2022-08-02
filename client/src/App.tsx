@@ -2,9 +2,9 @@ import React, { createContext, useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Home from './components/templates/Home';
+import Login from './components/templates/Login';
+import Register from './components/templates/Register';
 import axios from 'axios';
 
 interface IUser {

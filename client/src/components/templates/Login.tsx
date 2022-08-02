@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { UserUpdateContext } from '../App';
-import Input from '../components/Input';
+import { UserUpdateContext } from '../../App';
+import Input from '../atoms/Input';
 // import Auth from '../components/hoc/Auth';
 
 function Login() {

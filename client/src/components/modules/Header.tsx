@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext, UserUpdateContext } from '../../App';
-import Logo from '../Logo';
-import TextButton from '../TextButton';
+import Logo from '../atoms/Logo';
+import TextButton from '../atoms/TextButton';
 
 function Header() {
   const navigate = useNavigate();
